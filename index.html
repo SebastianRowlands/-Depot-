@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Virtual Swear Jar</title>
+  <title>Deepot - ZEV Regs & HGV drinks counter</title>
   <style>
     body {
       background: #0a0a0a;
@@ -12,7 +12,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
+      margin: 0;
+      padding: 1rem;
     }
     .jar {
       text-align: center;
@@ -21,10 +23,20 @@
       border-radius: 1rem;
       padding: 2rem;
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      width: 300px;
+      max-width: 320px;
+      width: 100%;
     }
-    .count { font-size: 4rem; font-weight: bold; }
-    .buttons { margin-top: 1rem; display: flex; gap: 1rem; justify-content: center; }
+    .count {
+      font-size: 4rem;
+      font-weight: bold;
+    }
+    .buttons {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
     button {
       background: #10b981;
       border: none;
@@ -33,25 +45,34 @@
       color: white;
       font-weight: 600;
       cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #059669;
     }
     button.reset {
       background: transparent;
       border: 1px solid #444;
       color: #aaa;
     }
+    p.share {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
   </style>
 </head>
 <body>
   <div class="jar">
-    <h1>🫙 Virtual Swear Jar</h1>
+    <h1>🫙 Deepot - ZEV Regs & HGV drinks counter</h1>
     <div class="count" id="count">0</div>
     <p>Total Fines: £<span id="total">0.00</span></p>
     <div class="buttons">
-      <button id="add">Add Swear</button>
+      <button id="add">Add Drink</button>
       <button id="reset" class="reset">Reset</button>
     </div>
+    <p class="share">Share this link with colleagues and track drinks together!</p>
   </div>
-
   <script>
     const COST = 0.5;
     const countEl = document.getElementById('count');
@@ -59,7 +80,8 @@
     const addBtn = document.getElementById('add');
     const resetBtn = document.getElementById('reset');
 
-    let count = parseInt(localStorage.getItem('swearCount') || 0);
+    // Load saved count
+    let count = parseInt(localStorage.getItem('drinkCount') || 0);
     updateDisplay();
 
     addBtn.onclick = () => {
@@ -68,14 +90,14 @@
     };
 
     resetBtn.onclick = () => {
-      if (confirm("Reset your swear jar?")) {
+      if (confirm("Reset your drinks counter?")) {
         count = 0;
         save();
       }
     };
 
     function save() {
-      localStorage.setItem('swearCount', count);
+      localStorage.setItem('drinkCount', count);
       updateDisplay();
     }
 
