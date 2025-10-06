@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Deepot - ZEV Regs & HGV drinks counter</title>
+  <title>Seb says 'Deepot' counter</title>
   <style>
     body {
       background: #0a0a0a;
@@ -64,14 +64,14 @@
 </head>
 <body>
   <div class="jar">
-    <h1>🫙 Deepot - ZEV Regs & HGV drinks counter</h1>
+    <h1>🫙 Seb says 'Deepot' counter</h1>
     <div class="count" id="count">0</div>
     <p>Total Fines: £<span id="total">0.00</span></p>
     <div class="buttons">
-      <button id="add">Add Drink</button>
+      <button id="add">Add 'Deepot'</button>
       <button id="reset" class="reset">Reset</button>
     </div>
-    <p class="share">Share this link with colleagues and track drinks together!</p>
+    <p class="share">Share this link with colleagues and track 'Deepot' mentions together!</p>
   </div>
   <script>
     const COST = 0.5;
@@ -81,7 +81,7 @@
     const resetBtn = document.getElementById('reset');
 
     // Load saved count
-    let count = parseInt(localStorage.getItem('drinkCount') || 0);
+    let count = parseInt(localStorage.getItem('deepotCount') || 0);
     updateDisplay();
 
     addBtn.onclick = () => {
@@ -90,14 +90,14 @@
     };
 
     resetBtn.onclick = () => {
-      if (confirm("Reset your drinks counter?")) {
+      if (confirm("Reset your 'Deepot' counter?")) {
         count = 0;
         save();
       }
     };
 
     function save() {
-      localStorage.setItem('drinkCount', count);
+      localStorage.setItem('deepotCount', count);
       updateDisplay();
     }
 
